@@ -1,0 +1,60 @@
+data/curated_csv/
+data/newlytakendata_csv/
+data/raw_csv/
+data/metadata.csv
+data/clean_v4/
+data/bozukk/
+*.mat
+__pycache__/
+.venv/
+.cache/
+.claude/
+.understand-anything/
+.DS_Store
+**/*.pyc
+*.egg-info/
+models/
+!configs/models/
+!configs/models/*.yaml
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Local experiment tracking
+experiments/mlruns/
+mlruns/
+mlflow.db
+
+# Personal notes, ideas, and scratch planning
+kendime_notlar/
+docs/FinalReportResultRunPlan.md
+
+# Local design/export workspaces
+Figma/
+presentation/
+
+# Demo app (local-only, not part of the report deliverables)
+app/
+run_demo.sh
+
+# Generated artifacts
+artifacts/*
+!artifacts/.gitkeep
+
+# DVC local cache
+.dvc/cache/
+.dvc/tmp/
+
+# LaTeX build outputs
+report/*.aux
+report/*.blg
+report/*.log
+report/*.out
+report/*.toc
+texput.log
+
+# Keep only final report deliverable PDFs tracked
+report/**
+!report/
+!report/EE492_FinalReport_AbdulhalimKiraz.pdf
+!report/EE492_FinalPresentation_AbdulhalimKiraz.pdf

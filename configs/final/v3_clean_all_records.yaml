@@ -1,0 +1,47 @@
+experiment:
+  name: final_v3_clean_all_records
+  task: cough_detection
+
+data:
+  metadata: data/clean_v4/metadata.csv
+  data_root: data
+
+split:
+  strategy: record_holdout
+  stratify_by: activity
+  seed: 42
+  train_size: 0.70
+  val_size: 0.15
+  test_size: 0.15
+
+sampling:
+  audio_hz: 4800
+  motion_hz: 100
+
+windowing:
+  window_sec: 1.0
+  hop_sec: 0.25
+  label_rule: center_positive
+  center_fraction: 0.2
+
+spectrogram:
+  n_fft: 512
+  hop_length: 128
+  n_mels: 64
+  f_min: 60
+  f_max: 2200
+  log_eps: 1.0e-9
+
+model:
+  audio_input: log_mel_spectrogram
+  audio_branch: conv2d
+  motion_branch: conv1d
+  fusion: late
+
+training:
+  optimizer: adam
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  batch_size: 64
+  epochs: 25
+  scheduler: reduce_lr_on_plateau

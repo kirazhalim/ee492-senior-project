@@ -1,0 +1,29 @@
+experiment:
+  name: dl_baseline_v1
+  task: cough_detection
+
+data:
+  metadata: data/metadata.csv
+
+sampling:
+  audio_hz: 4800
+  motion_hz: 100
+
+windowing:
+  window_sec: 1.0
+  hop_sec: 0.5
+  label_rule: any_positive
+
+model:
+  audio_input: raw_waveform
+  audio_branch: conv1d
+  motion_branch: conv1d
+  fusion: late
+
+training:
+  optimizer: adam
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  batch_size: 64
+  epochs: 15
+

@@ -1,0 +1,14 @@
+project_root: .
+
+data:
+  metadata: data/metadata.csv
+  raw_csv: data/raw_csv
+  curated_csv: data/curated_csv
+  rejected_csv: data/bozukk
+
+outputs:
+  models: models
+  report_figures: report/figures
+  artifacts: artifacts
+  mlflow_tracking: experiments/mlruns
+

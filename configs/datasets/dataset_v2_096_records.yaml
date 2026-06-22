@@ -1,0 +1,41 @@
+dataset_id: dataset_v2_096_records
+description: Current curated dataset including newly added records 085-095.
+metadata_path: data/metadata.csv
+data_root: data
+record_id_range:
+  start: 0
+  end: 95
+record_count: 96
+created_from_git_commit: 245c45f
+split:
+  strategy: not_finalized
+  seed: 42
+  notes: The final train/val/test split for this expanded dataset has not been frozen yet.
+hashes:
+  metadata_rows_sha256: 5c7908b14d5b2c40ff671a312985b963bd638d2e733e2b532312399b6f4aae2b
+  data_files_sha256: 0ec5a7898165af55f344361b2bcbdabeac20a99d1f70fae84e6920f512217daa
+  combined_sha256: 6a89a19d394c648ab21b9c978056b4392617987e4ef88d31ac8104c405541fc8
+subjects:
+  - subject_01
+  - subject_02
+  - subject_03
+  - subject_04
+  - subject_05
+  - subject_06
+activity_counts:
+  running: 5
+  sitting: 46
+  standing: 16
+  walking: 29
+context_counts:
+  clean: 37
+  coughnoise: 29
+  doornoise: 1
+  falsepositive: 2
+  musicnoise: 7
+  noise: 17
+  sneezenoise: 2
+  snoozenoise: 1
+notes:
+  - Records 085-095 were evaluated as a new-data holdout with the existing V3 checkpoint.
+  - Do not compare this dataset directly with dataset_v1_085_records results unless the split and training protocol are stated.

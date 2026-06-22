@@ -1,0 +1,27 @@
+model_id: v3_cough_current
+model_name: Spec2DCoughCNN
+task: cough_detection
+checkpoint_path: artifacts/models/v3_cough.pt
+checkpoint_sha256: 8352a08462bf33a97459499c6b7655527657203b4200448c719bc2be3eeeef82
+config_path: configs/v3.yaml
+config_sha256: daf53adbd992bb84c5bd0e10e8c8b51fafdedf63012180b90d021666f25122f7
+training_dataset_id: dataset_v1_085_records
+training_dataset_manifest: configs/datasets/dataset_v1_085_records.yaml
+manifest_created_from_git_commit: 245c45f
+training:
+  script: scripts/train_v3.py
+  seed: 42
+  split_source: checkpoint.record_split
+evaluation:
+  original_split:
+    dataset_id: dataset_v1_085_records
+    artifacts: artifacts/evaluations/v3_cough_pt/original_split_085_records
+  new_records_085_095:
+    dataset_id: dataset_v2_096_records
+    artifacts: artifacts/evaluations/v3_cough_pt/new_records_085_095/current_hop_eval
+mlflow:
+  status: not_registered_yet
+  next_step: Log future train/eval runs with model_id and dataset_id parameters.
+notes:
+  - This manifest describes the existing local checkpoint.
+  - Future checkpoints should get a new model_id or model version entry.

@@ -1,0 +1,41 @@
+dataset_id: dataset_v1_085_records
+description: Original V3 baseline dataset before records 085-095 were added.
+metadata_path: data/metadata.csv
+data_root: data
+record_id_range:
+  start: 0
+  end: 84
+record_count: 85
+created_from_git_commit: 245c45f
+split:
+  strategy: record_level_random_split
+  seed: 42
+  train_fraction: 0.70
+  val_fraction: 0.15
+  test_fraction: 0.15
+hashes:
+  metadata_rows_sha256: ee99a45d7e63f23aa0ce5fc374f7b447ae6137aa71ced20eeef0931364e33f28
+  data_files_sha256: 17c64008d18adc3eac13c5c885da4cc8e11466107dd23430f24eb5f617bc8521
+  combined_sha256: f59422bc405d6dc1b040f94af98b911b335cfe3b6a9d5e2268eb954bdd5aacf4
+subjects:
+  - subject_01
+  - subject_02
+  - subject_03
+  - subject_04
+activity_counts:
+  running: 5
+  sitting: 43
+  standing: 15
+  walking: 22
+context_counts:
+  clean: 37
+  coughnoise: 29
+  doornoise: 1
+  falsepositive: 2
+  musicnoise: 7
+  noise: 6
+  sneezenoise: 2
+  snoozenoise: 1
+notes:
+  - This manifest hashes only records 000-084, even if metadata.csv contains newer records.
+  - Use this dataset_id for results reported as the original V3 baseline.

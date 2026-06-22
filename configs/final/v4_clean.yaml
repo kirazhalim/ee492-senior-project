@@ -1,0 +1,67 @@
+experiment:
+  name: final_v4_clean_event_activity
+  task: cough_event_detection_with_activity
+
+data:
+  metadata: data/clean_v4/metadata.csv
+  data_root: data
+
+split:
+  strategy: record_holdout
+  stratify_by: activity
+  seed: 42
+  train_size: 0.70
+  val_size: 0.15
+  test_size: 0.15
+
+sampling:
+  audio_hz: 4800
+  motion_hz: 100
+
+cough:
+  inputs: audio_motion
+  chunk_sec: 5.0
+  chunk_hop_sec: 1.0
+  frame_hop_samples: 48
+  min_gt_event_duration_sec: 0.1
+  specs:
+    spec128:
+      n_fft: 128
+      hop_length: 48
+      n_mels: 48
+      f_min: 60
+      f_max: 2200
+      log_eps: 1.0e-9
+    spec256:
+      n_fft: 256
+      hop_length: 48
+      n_mels: 64
+      f_min: 60
+      f_max: 2200
+      log_eps: 1.0e-9
+  postprocessing:
+    event_iou_threshold: 0.2
+    thresholds: [0.3, 0.4, 0.5, 0.6, 0.7, 0.8]
+    pred_merge_gap_sec: [0.1, 0.2, 0.3]
+    pred_min_duration_sec: [0.1, 0.2]
+
+activity:
+  inputs: motion
+  classes: [stationary, walking, running]
+  label_map:
+    sitting: stationary
+    standing: stationary
+  window_sec: 3.0
+  hop_sec: 0.5
+  attribution_context_sec: 2.0
+
+training:
+  optimizer: adam
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  batch_size: 32
+  epochs: 30
+  early_stopping_patience: 5
+  scheduler: reduce_lr_on_plateau
+  scheduler_factor: 0.5
+  scheduler_patience: 3
