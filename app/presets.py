@@ -1,19 +1,9 @@
 """Curated raw-CSV presets for the live demo.
 
-The preset list is generated from the **test split** of the shared
-record-holdout split used by every final model (V3 / V4 / V5 / classical XGB).
-That split is defined by the seed=42 stratified record split in
-``configs/final/*.yaml`` and is identical across all four model checkpoints — we
-verified it once by reading the ``record_split["test"]`` field of
-``artifacts/final_report_results/clean_v4_shared_split/models/v3_main.pt``.
-
-Each preset points at the curated CSV under ``data/clean_v4/curated_csv``. That
-file is byte-identical (modulo the optional CSV quotes) to the corresponding
-``data/raw_csv`` file: 4 integer columns, no header, with the cough label still
-bit-packed into column 3. ``preprocess_raw_csv`` works on it unchanged.
-
-If we ever need to expand the demo beyond the test split, add manual entries to
-``EXTRA_PRESETS`` below.
+The public repository includes only the held-out test preset CSVs required for
+the demo, with anonymized filenames under ``app/demo_records``. If the private
+``data/clean_v4/metadata.csv`` file is available locally, the app can also build
+the same preset list directly from that metadata.
 """
 
 from __future__ import annotations
@@ -29,6 +19,7 @@ from cough_analysis.paths import project_path
 
 REPO_ROOT = Path(project_path()).resolve()
 METADATA_PATH = REPO_ROOT / "data" / "clean_v4" / "metadata.csv"
+PUBLIC_PRESET_ROOT = REPO_ROOT / "app" / "demo_records"
 
 # Shared test split (record_ids), seed=42 stratified by activity.
 # Source: artifacts/final_report_results/clean_v4_shared_split/models/v3_main.pt
@@ -79,18 +70,33 @@ def _build_test_split_presets(record_ids: Iterable[int]) -> list[Preset]:
     return presets
 
 
-# Optional manual additions — append to PRESETS below if you want non-test
-# records (e.g. an interesting walking+cough case from data/raw_csv). Leave
-# empty by default so the demo strictly reflects the held-out test set.
-EXTRA_PRESETS: list[Preset] = []
+def _build_public_demo_presets() -> list[Preset]:
+    """Use the anonymized CSV files bundled with the public demo."""
+    presets: list[Preset] = []
+    for path in sorted(PUBLIC_PRESET_ROOT.glob("record_*.csv")):
+        stem = path.stem
+        parts = stem.split("_", maxsplit=3)
+        if len(parts) < 4:
+            continue
+        rid = parts[1]
+        activity = parts[2]
+        context = parts[3]
+        presets.append(Preset(
+            key=f"record_{rid}",
+            label=f"Record {rid} ({activity})",
+            description=context,
+            relative_path=str(path.relative_to(REPO_ROOT)),
+        ))
+    return presets
 
 
-PRESETS: list[Preset] = _build_test_split_presets(TEST_SPLIT_RECORD_IDS) + EXTRA_PRESETS
+PRESETS: list[Preset] = _build_test_split_presets(TEST_SPLIT_RECORD_IDS)
+if not PRESETS:
+    PRESETS = _build_public_demo_presets()
 PRESETS_BY_KEY: dict[str, Preset] = {p.key: p for p in PRESETS}
 
 
 __all__ = [
-    "EXTRA_PRESETS",
     "Preset",
     "PRESETS",
     "PRESETS_BY_KEY",
