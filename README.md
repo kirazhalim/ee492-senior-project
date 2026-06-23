@@ -91,17 +91,13 @@ For activity classification, the motion-only Activity Classifier reached 0.884 s
 
 ## Demo
 
-For a project review, the recommended sharing format is a live hosted Streamlit demo plus this GitHub repository. Asking the reviewer to run the full checkpoint-backed pipeline from code is possible, but it is less reliable because the private demo depends on sensor records, model checkpoints, and local ML dependencies.
-
-The public demo is prepared under `demo/`. It is safe to deploy because it uses anonymized preset signals and report-aligned model summaries rather than raw subject recordings or private checkpoints.
+The public Streamlit demo lives in `demo/`. It uses anonymized preset signals to show the cough-detection and activity-attribution workflow without including raw subject recordings, metadata, or private model checkpoints.
 
 ```bash
 streamlit run demo/streamlit_app.py
 ```
 
-For Streamlit Community Cloud, use `demo/streamlit_app.py` as the app entrypoint. The lightweight dependency file is placed next to it at `demo/requirements.txt`, so the hosted demo does not need to install the full model training stack.
-
-The private checkpoint-backed Streamlit app used during development lives under `app/` in the working copy. It is intentionally excluded from the public repository because it depends on non-public model artifacts under `artifacts/final_report_results/` and private dataset files under `data/clean_v4/`.
+For Streamlit Community Cloud, set the app entrypoint to `demo/streamlit_app.py`.
 
 ## Repository Structure
 
