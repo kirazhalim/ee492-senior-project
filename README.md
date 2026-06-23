@@ -91,6 +91,8 @@ For activity classification, the motion-only Activity Classifier reached 0.884 s
 
 ## Demo
 
+Live demo: [ee492-senior-project-demo.streamlit.app](https://ee492-senior-project-demo.streamlit.app/)
+
 The Streamlit demo lives in `app/` and runs the checkpoint-backed cough detection pipeline. Raw sensor recordings and subject metadata are not included in this repository; use the upload option or place the private dataset under `data/clean_v4/` for preset records.
 
 ```bash
@@ -98,6 +100,8 @@ The Streamlit demo lives in `app/` and runs the checkpoint-backed cough detectio
 ```
 
 For Streamlit Community Cloud, set the app entrypoint to `app/streamlit_app.py`.
+
+If the app has been inactive for a while, Streamlit may show a wake-up screen before loading it.
 
 ## Repository Structure
 
