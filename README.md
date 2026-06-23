@@ -91,13 +91,13 @@ For activity classification, the motion-only Activity Classifier reached 0.884 s
 
 ## Demo
 
-The public Streamlit demo lives in `demo/`. It uses anonymized preset signals to show the cough-detection and activity-attribution workflow without including raw subject recordings, metadata, or private model checkpoints.
+The Streamlit demo lives in `app/` and runs the checkpoint-backed cough detection pipeline. Raw sensor recordings and subject metadata are not included in this repository; use the upload option or place the private dataset under `data/clean_v4/` for preset records.
 
 ```bash
-streamlit run demo/streamlit_app.py
+.venv/bin/python -m streamlit run app/streamlit_app.py
 ```
 
-For Streamlit Community Cloud, set the app entrypoint to `demo/streamlit_app.py`.
+For Streamlit Community Cloud, set the app entrypoint to `app/streamlit_app.py`.
 
 ## Repository Structure
 
@@ -105,13 +105,13 @@ For Streamlit Community Cloud, set the app entrypoint to `demo/streamlit_app.py`
 src/cough_analysis/   Reusable preprocessing, model, windowing, and event metric code
 scripts/              Training, evaluation, reporting, and prediction scripts
 configs/final/        Final experiment configurations used in the report
-demo/                 Public deployable Streamlit demo with anonymized presets
+app/                  Streamlit demo used for the project presentation
 docs/                 Supporting notes and README figures
 report/               Final report PDF
 presentation/         Final presentation source/PDF, if included locally
 tests/                Lightweight unit tests for core pipeline behavior
 data/                 Dataset scripts and documentation; raw/private data excluded
-artifacts/            Local generated outputs; excluded except placeholders
+artifacts/            Selected demo checkpoints; generated outputs excluded
 ```
 
 ## Setup

@@ -33,13 +33,20 @@ docs/FinalReportResultRunPlan.md
 Figma/
 presentation/
 
-# Demo app (local-only, not part of the report deliverables)
-app/
-run_demo.sh
-
 # Generated artifacts
 artifacts/*
 !artifacts/.gitkeep
+!artifacts/final_report_results/
+!artifacts/final_report_results/clean_v4_shared_split/
+!artifacts/final_report_results/clean_v4_shared_split/ee491_classical/
+!artifacts/final_report_results/clean_v4_shared_split/ee491_classical/model.joblib
+!artifacts/final_report_results/clean_v4_shared_split/models/
+!artifacts/final_report_results/clean_v4_shared_split/models/v3_main.pt
+!artifacts/final_report_results/clean_v4_shared_split/models/v4/
+!artifacts/final_report_results/clean_v4_shared_split/models/v4/v4_activity.pt
+!artifacts/final_report_results/clean_v4_shared_split/models/v4/v4_cough_spec256.pt
+!artifacts/final_report_results/clean_v4_shared_split/v5_ast/
+!artifacts/final_report_results/clean_v4_shared_split/v5_ast/fusion_head.pt
 
 # DVC local cache
 .dvc/cache/

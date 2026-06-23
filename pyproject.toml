@@ -24,6 +24,11 @@ dev = [
   "jupyter>=1,<2",
   "notebook>=7,<8",
 ]
+demo = [
+  "streamlit>=1.36,<2",
+  "transformers>=4,<5",
+  "xgboost>=2,<4",
+]
 tracking = [
   "mlflow>=2,<4",
   "dvc>=3,<4",
